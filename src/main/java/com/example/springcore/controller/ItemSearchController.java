@@ -1,12 +1,18 @@
 package com.example.springcore.controller;
 
 import com.example.springcore.dto.ItemDto;
+<<<<<<< HEAD
 import com.example.springcore.service.SearchService;
+=======
+>>>>>>> origin/master
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+<<<<<<< HEAD
 import lombok.RequiredArgsConstructor;
+=======
+>>>>>>> origin/master
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
