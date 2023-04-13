@@ -12,6 +12,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+            // 이미지 폴더, CSS 폴더 관련된 리소스는 login 없이 허용합니다.
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/css/**").permitAll()
             // 어떤 요청이든 '인증'
                 .anyRequest().authenticated()
             .and()
