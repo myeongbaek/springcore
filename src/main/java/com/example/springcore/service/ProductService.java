@@ -20,9 +20,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product createProduct(ProductRequestDto requestDto) throws SQLException {
-// 요청받은 DTO 로 DB에 저장할 객체 만들기
-        Product product = new Product(requestDto);
+    public Product createProduct(ProductRequestDto requestDto, Long userId) throws SQLException {
+
+        // 요청받은 DTO 로 DB에 저장할 객체 만들기
+        Product product = new Product(requestDto, userId);
 
         productRepository.save(product);
 
@@ -40,9 +41,13 @@ public class ProductService {
         return product;
     }
 
-    public List<Product> getProducts() throws SQLException {
-        List<Product> products = productRepository.findAll();
+    public List<Product> getProducts(Long userId) throws SQLException {
+        List<Product> products = productRepository.findAllByUserId(userId);
 
         return products;
+    }
+
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 }

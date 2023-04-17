@@ -8,6 +8,8 @@
     <meta property="og:title" content="00만의 셀렉샵">
     <meta property="og:description" content="관심상품을 선택하고, 최저가 알림을 확인해보세요!">
     <meta property="og:image" content="images/og_selectshop.png">
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:contents="${_csrf.headerName}"/>-->
     <link href="https://fonts.googleapis.com/css2?family=family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,8 +17,18 @@
     <title>나만의 셀렉샵</title>
 </head>
 <body>
-<div class="header">
-    Select Shop
+<div th:if="${admin_role}" id="admin"></div>
+<div class="header" style="position:relative;">
+    <div id="header-title-login-user">
+        <span th:text="${username}"></span> 님의
+    </div>
+    <div id="header-title-select-shop">
+        Select Shop
+    </div>
+
+    <form id="my_form" method="post" action="/user/logout">
+        <a id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</a>
+    </form>
 </div>
 <div class="nav">
     <div class="nav-see active">
@@ -34,7 +46,7 @@
 <div id="search-area">
     <div>
         <input type="text" id="query">
-        <!-- <img src="images/icon-search.png" alt="">-->
+        <!--    <img src="images/icon-search.png" alt="">-->
     </div>
     <div id="search-result-box">
 
