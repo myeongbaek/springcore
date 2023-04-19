@@ -1,6 +1,7 @@
 package com.example.springcore.model;
 
 import com.example.springcore.dto.ProductRequestDto;
+import com.example.springcore.validator.ProductValidator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,11 +40,17 @@ public class Product {
 
     // 관심 상품 생성 시 이용합니다.
     public Product(ProductRequestDto requestDto, Long userId) {
+        // DI는 Bean 끼리만 적용이 가능합니다. Pruduct는 POJO이기 때문에 DI를 해줄 수 없습니다.
+        // DI를 할 수 없지만 static으로 선언하면 객체가 없이도 함수를 사용할 수 있습니다.
+        // Product 생성자의 엣지 케이스를 검정
+        ProductValidator.validateProductConstructor(requestDto, userId);
+
+        // 관심상품을 등록한 회원 Id 저장
+        this.userId = userId;
         this.title = requestDto.getTitle();
         this.image = requestDto.getImage();
         this.link = requestDto.getLink();
         this.lprice = requestDto.getLprice();
         this.myprice = 0;
-        this.userId = userId;
     }
 }
